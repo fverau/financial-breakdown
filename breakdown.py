@@ -18,15 +18,21 @@ def main():
   saving = int(input("Cuánto porcentaje destinas a ahorro?: "))
 
   to_save = get_percentage_of(salary, saving) # valor destinado a ahorrar
-  leftover_after_saving = salary_after_fixed - to_save
-  print(f"Dinero destinado a ahorro: ${to_save}")
-  print(f"Te queda: ${leftover_after_saving}")
+  leftover_after_saving = engine(salary_after_fixed, to_save, "ahorro")
 
   ## Alimentación
 
-  feeding = int(input("Cuánto porcentaje destinas a ahorro?: "))
-  
+  feeding = int(input("Cuánto porcentaje destinas a alimentación?: "))
+  to_eat = get_percentage_of(salary, feeding)
+  leftover_after_feeding = engine(leftover_after_saving, to_eat, "alimentación")
 
+
+
+def engine(remaining, intended_for, reason):
+  leftover = remaining - intended_for
+  print(f"Dinero destinado a {reason}: ${intended_for}")
+  print(f"Te queda: ${leftover}")
+  return leftover
 
 
 
